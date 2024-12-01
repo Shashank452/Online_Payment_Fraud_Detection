@@ -1,102 +1,88 @@
-# Online_Payment_Fraud_Detection
+# **Online Payment Fraud Detection**
 
-# Abstract: Online Payment Fraud Detection using Logistic Regression
-As online payment methods become increasingly popular, the risk of fraud also rises. Detecting fraudulent transactions is crucial to maintaining trust and security in digital financial systems. In this context, machine learning techniques play a vital role.
+This project uses machine learning to detect fraudulent online payment transactions. It utilizes a Logistic Regression model to classify transactions as either fraudulent or legitimate based on transaction details. The application provides a graphical interface using Tkinter, allowing users to upload a CSV file and predict whether the transactions in the file are fraudulent.
 
-In our study, we focus on using logistic regression for fraud detection in payment transactions. We leverage labeled datasets containing payment records to train and evaluate our model. Specifically:
+---
 
-Problem Statement: We address the challenge of identifying fraudulent transactions within a given dataset.
+## **Features**
+- **Fraud Detection**: Classifies transactions as fraudulent or legitimate using Logistic Regression.
+- **Data Preprocessing**: Handles missing values by imputing with the mean and selecting relevant features for classification.
+- **Graphical User Interface (GUI)**: A simple Tkinter-based GUI to allow users to upload CSV files for prediction.
+- **Result Storage**: Saves fraud-flagged transactions in a new CSV file (`fraud_flagged_data.csv`).
 
-Methodology:
-We apply logistic regression, a widely used classification algorithm, to predict whether a transaction is fraudulent (class 1) or legitimate (class 0).
-Our model learns from features such as transaction type, amount, sender’s balance, and receiver’s balance.
+---
 
-Results:
-Our proposed approach achieves high accuracy in detecting fraud transactions.
-We strike a balance by minimizing false positives (legitimate transactions incorrectly flagged as fraud).
+## **Technologies Used**
+- **Python**: Programming language for the project.
+- **Pandas**: For data manipulation and processing.
+- **Scikit-Learn**: For machine learning and model training (Logistic Regression).
+- **Tkinter**: For creating the graphical user interface.
+- **Matplotlib**: (Optional) For visualizing the model's performance (not included in this code but can be added).
 
-Conclusion:
-Logistic regression, when properly tuned, provides an effective solution for online payment fraud detection.
-Future work may explore ensemble methods or other advanced techniques to further enhance performance.
-This abstract highlights the significance of logistic regression in combating online payment fraud. 
+---
 
-# Algorithms used for Online_Payment_Fraud_Detection
+## **Setup and Installation**
 
-1) Logistic Regression (LR):
-Purpose: Logistic regression is a widely used classification algorithm for binary and multiclass problems.
+### **1. Clone the Repository**
+Clone the repository to your local machine:
+```bash
+git clone https://github.com/Shashank452/Online_Payment_Fraud_Detection.git
+cd Online_Payment_Fraud_Detection
+```
 
-How It Works:
-Given input features (e.g., transaction details), logistic regression estimates the probability of an instance belonging to a specific class (e.g., fraud or non-fraud).
-
-It models the log-odds (logit) of the probability as a linear combination of input features.
-The logistic function (sigmoid) maps the log-odds to a probability between 0 and 1.
-
-Advantages:
-
-Simplicity and interpretability.
-Works well when the relationship between features and the target is approximately linear.
-
-Limitations:
-Assumes that the decision boundary is linear.
-Sensitive to outliers.
-
-In the Code:
-The LogisticRegression class from scikit-learn is used to train a logistic regression model.
-The model is trained on features related to transaction details (e.g., num_trans_per_hour, amount, balances).
-Predictions are made using the trained model, and accuracy and classification report metrics are evaluated.
-
-2) Data Preprocessing:
-Purpose: Prepare the data for modeling.
-
-Steps:
-Extract relevant features (columns) from the dataset.
-Impute missing values (using mean imputation in this case).
-Split the data into features (X) and the target variable (y).
-
-3) Application Flow:
-The code defines functions for preprocessing input data, training the logistic regression model, making predictions, and saving results.
-
-It creates a simple GUI application using tkinter, allowing users to upload a CSV file and predict fraud.
-When the user uploads a file, the model predicts whether each transaction is fraudulent or not.
-Fraud-flagged data is saved to a new CSV file.
-
-5) Evaluation:
-The accuracy of the model is calculated using the ground truth labels.
-
-The classification report provides additional metrics such as precision, recall, and F1-score.
-
-# Below are the steps to run the provided code for online payment fraud detection using logistic regression:
-
-1) Install Required Packages:
-Make sure you have Python installed on your system.
-Create a virtual environment (optional but recommended).
-
-Install the required packages using:
+### **2. Install Dependencies**
+Install the required Python libraries using the requirements.txt file:
+```bash
 pip install -r requirements.txt
+```
 
-2) Prepare Your Data:
-Ensure you have a CSV file containing payment transaction data (similar to the provided combined_data.csv).
+### **3. Required Files**
+Make sure you have a CSV file (combined_data.csv) for model training and predictions. The dataset should contain the following columns:
 
-The file should have columns like num_trans_per_hour, amount, oldbalanceOrg, newbalanceOrig, oldbalanceDest, and newbalanceDest.
+- num_trans_per_hour: Number of transactions per hour.
+- amount: Transaction amount.
+- oldbalanceOrg: Previous balance of the sender.
+- newbalanceOrig: New balance after transaction (sender).
+- oldbalanceDest: Previous balance of the receiver.
+- newbalanceDest: New balance after transaction (receiver).
+- isFraud: Target variable indicating whether the transaction is fraudulent (1 for fraud, 0 for legitimate).
 
-4) Run the Code:
-Save the provided code snippet to a Python file (e.g., fraud_detection.py).
+---
 
-Replace 'combined_data.csv' with the actual path to your dataset in the code.
+## **How to Run**
+1. Train the Logistic Regression model by running the script:
+```bash
+python fraud_detection.py
+```
+2. The model will be trained, and the GUI will appear.
+3. Click the "Upload CSV and Predict Fraud" button in the GUI to open a file dialog.
+4. Select the CSV file containing the transactions you want to predict.
+5. The application will process the file, make predictions, and save fraud-flagged transactions to fraud_flagged_data.csv.
 
-Open a terminal or command prompt and navigate to the directory containing your Python file.
+---
 
-Run the script using:
-python solution.py
+## **Project Structure**
+```markdown
+online-payment-fraud-detection/
+│
+├── solution.py               # Main script for fraud detection and GUI
+├── combined_data.csv         # Sample data for model training (must be provided)
+├── fraud_flagged_data.csv    # Output file with fraud-flagged transactions
+├── requirements.txt          # Python dependencies
+└── README.md                 # Project documentation
+```
 
-6) GUI Application:
-A window will open with a button labeled “Upload CSV and Predict Fraud.”
+---
 
-Click the button and select your input CSV file "test.csv".
+## **Future Enhancements**
+- Implement additional machine learning models (e.g., Random Forest, SVM) for better performance.
+- Integrate more features such as time of day, location, and device used.
+- Improve the GUI with more options for user interaction and data visualization.
 
-The model will predict fraud for each transaction and save fraud-flagged data to a new CSV file (fraud_flagged_data.csv).
+---
 
-8) View Results:
-Check the terminal/command prompt for accuracy and classification report metrics.
-
-Open the saved fraud_flagged_data.csv file to see the flagged transactions.
+## **Contact**
+If you have any questions or suggestions, feel free to reach out:
+- **Author**: [Shashanka C K](mailto:your-email@example.com)  
+- **GitHub**: [Shashank452](https://github.com/Shashank452)  
+- **LinkedIn**: [Shashanka C K](https://www.linkedin.com/in/shashanka-c-k)
